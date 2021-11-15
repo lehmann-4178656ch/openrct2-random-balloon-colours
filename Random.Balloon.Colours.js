@@ -1,4 +1,4 @@
-const balloonStallType = 32;
+const balloonItemType = 0;
 const namespace = 'random_balloon_colours';
 const changeStallBalloonColourKey = namespace + ".changeStallBalloonColour"
 const changePeepBalloonColourKey = namespace + ".changePeepBalloonColour"
@@ -21,7 +21,7 @@ const changeStallBalloonColour = function() {
         if (item.classification != 'stall') {
             continue;
         }
-        if (item.type != balloonStallType) {
+        if (item.object.shopItem != balloonItemType && item.object.shopItemSecondary != balloonItemType) {
             continue;
         }
         item.colourSchemes = [{main: context.getRandom(0, 31)}];
@@ -63,7 +63,7 @@ const showWindow = function() {
       window.bringToFront();
       return;
     }
-  
+
     ui.openWindow({
         classification: namespace,
         width: 240,
